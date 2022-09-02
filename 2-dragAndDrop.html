@@ -30,7 +30,7 @@
 
     const card = document.getElementById('card');
 
-    const mouseDown$ = fromEvent(document, 'mousedown');
+    const mouseDown$ = fromEvent(card, 'mousedown');
     const mouseMove$ = fromEvent(document, 'mousemove');
     const mouseUp$ = fromEvent(document, 'mouseup');
 
