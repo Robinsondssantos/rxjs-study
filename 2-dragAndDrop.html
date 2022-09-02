@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/rxjs@^7/dist/bundles/rxjs.umd.min.js"></script>
+  <style>
+    .card {
+      width: 180px;
+      height: 180px;
+      /* background-color: #ff0000; */
+      background-color: #eeeeef;
+      cursor: grab;
+      position: absolute;
+    }
+
+    .card:hover {
+      cursor: grabbing;
+    }
+  </style>
+  <title>Drag and Drop</title>
+</head>
+<body>
+  <div class="card" id="card"></div>
+  <script>
+    // source: https://www.youtube.com/watch?v=TMH62OmfAXE&t=1032s
+
+    const { fromEvent, scan, map, switchMap, takeUntil } = rxjs;
+
+    const card = document.getElementById('card');
+
+    const mouseDown$ = fromEvent(document, 'mousedown');
+    const mouseMove$ = fromEvent(document, 'mousemove');
+    const mouseUp$ = fromEvent(document, 'mouseup');
+
+    const dragAndDrop$ = mouseDown$.pipe(
+      map(e => ({
+        x: e.clientX,
+        y: e.clientY,
+        target: {
+          x: e.target.offsetLeft,
+          y: e.target.offsetTop
+        }
+      })),
+      switchMap(start => mouseMove$.pipe(
+        map(e => ({
+          x: start.target.x +  e.clientX - start.x,
+          y: start.target.y + e.clientY - start.y
+        })),
+        takeUntil(mouseUp$)
+      ))
+    );
+
+    dragAndDrop$.subscribe((val) => {
+      card.style.left = `${val.x}px`;
+      card.style.top = `${val.y}px`;
+    })
+
+  </script>
+</body>
+</html>
