@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #000;
+  color: #fff;
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pacman {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #f2d648;
+  position: relative;
+}
+
+.pacman__eye {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #333;
+  position: absolute;
+  top: 20px;
+  right: 40px;
+}
+
+.pacman__mouth {
+  position: absolute;
+  width: 101%;
+  height: 100%;
+  background-color: #000;
+  clip-path: polygon(100% 74%, 44% 48%, 100% 21%);
+}
