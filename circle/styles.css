@@ -50,6 +50,9 @@ body {
   justify-content: center;
   align-items: center;
   background: conic-gradient(#7777ff 30%, #cccccc 30%);
+  /* background: conic-gradient(red, orange, yellow, green, blue); */
+  /* background: radial-gradient(red, orange, yellow, green, blue); */
+  /* background: radial-gradient(#7777ff 30%, #cccccc 30%); */
 }
 
 .info-circle {
