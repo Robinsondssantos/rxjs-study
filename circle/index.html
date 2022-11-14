@@ -10,13 +10,44 @@
 <body>
   <div class="root">
     <div class="container">
-      <div class="circle">
-        <div class="info-circle">
-          25.6 °C
+      <div id="circle">
+        <div id="info-circle">
+          30 °C
         </div>
       </div>
     </div>
+    <button id="btn-increase" class="btn">increase</button>
+    <button id="btn-decrease" class="btn">decrease</button>
   </div>
+  <script>
+    function percentageTodegrees(percentage) {
+      return (360 * percentage) / 100
+    }
+
+    let percentage = 30;
+    const circle = document.getElementById('circle');
+    const infoCircle = document.getElementById('info-circle');
+    const btnIncrease = document.getElementById('btn-increase');
+    const btnDecrease = document.getElementById('btn-decrease');
+
+    btnIncrease.addEventListener('click', () => {
+      if (percentage <= 90) {
+        percentage = percentage + 10;
+        circle.style.background = `conic-gradient(#7777ff ${percentage}%, #cccccc ${percentage}%)`;
+        infoCircle.innerHTML = `${percentage} °C`;
+      }
+    });
+
+    btnDecrease.addEventListener('click', () => {
+      if (percentage >= 10) {
+        percentage = percentage - 10;
+        circle.style.background = `conic-gradient(#7777ff ${percentage}%, #cccccc ${percentage}%)`;        
+        infoCircle.innerHTML = `${percentage} °C`;
+      }
+    });    
+    
+
+  </script>
 </body>
 </html>
 
